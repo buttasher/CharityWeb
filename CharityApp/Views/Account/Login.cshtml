@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_masterLayout.cshtml";
+}
+
+<form class ="form" asp-action="Login" asp-controller="Account" method="post">
+    <p class="title">Welcome back</p>
+   
+        <input type="email" name="Email" class="input" placeholder="Email" required />
+        <input type="password" name="Password" class="input" placeholder="Password" required />
+
+        <p class="page-link">
+            <span class="page-link-label">
+            <a asp-controller="Account" asp-action="ForgotPassword">Forgot Password?</a>
+            </span>
+        </p>
+
+        <button type="submit" class="form-btn">Log in</button>
+    
+
+    <p class="sign-up-label">
+        Don't have an account? <span class="sign-up-link"><a asp-controller="Account" asp-action="Register">Sign up</a></span>
+    </p>
+
+
+</form>
+
+@section Scripts {
+    <script>
+        @if (TempData["Message"] != null)
+        {
+            <text>
+                alert('@TempData["Message"]');
+            </text>
+        }
+    </script>
+}

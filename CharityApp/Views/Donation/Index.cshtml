@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Donate";
+    Layout = "~/Views/Shared/_masterLayout.cshtml";
+}
+
+<div class="donation-container">
+    <h2 class="donation-title">Make a Donation</h2>
+
+    <form id="donation-form" class="donation-form">
+        <input type="text" id="userName" class="form-control" placeholder="Your Name" value="@ViewBag.UserName" readonly />
+
+        <input type="email" id="email" class="form-control" placeholder="Email" required />
+
+        <input type="text" id="country" class="form-control" placeholder="Country" />
+
+        <input type="number" id="amount" class="form-control" placeholder="Amount (USD)" required min="1" />
+
+        <button type="submit" class="donation-btn">Donate Now</button>
+    </form>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('@ViewBag.StripePublishableKey');
+
+    document.getElementById('donation-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const userName = document.getElementById('userName')?.value || "Guest";
+        const email = document.getElementById('email')?.value;
+        const country = document.getElementById('country')?.value || "Unknown";
+        const amount = parseFloat(document.getElementById('amount')?.value || "0");
+
+        if (!email || !amount || amount < 1) {
+            alert("Please fill in all required fields correctly.");
+            return;
+        }
+
+        fetch('/Donation/CreateCheckoutSession', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userName, email, country, amount })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Error: " + data.message);
+                } else {
+                    stripe.redirectToCheckout({ sessionId: data.id });
+                }
+            })
+            .catch(error => {
+                console.error("Error creating checkout session:", error);
+            });
+    });
+</script>

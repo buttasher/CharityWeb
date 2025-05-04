@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_masterLayout.cshtml";
+}
+
+<div id="main-container" class="main-container">
+    <!-- Dashboard -->
+    <div id="dashboard" class="page active">
+        <h2>Welcome <br /> <span class="user-name">@Context.Session.GetString("FullName")</span></h2><br />
+        <a asp-controller="Donation" asp-action="Index" class="donation-btn">Make New Donation</a>
+    </div>
+</div>

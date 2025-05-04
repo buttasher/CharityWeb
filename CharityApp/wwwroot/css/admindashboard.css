@@ -1,0 +1,117 @@
+/* General dashboard container */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f7f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Stats section (Total Donations, Total Resources) */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Stat card styling */
+.stat-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 45%;
+}
+
+    .stat-card h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .stat-card p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4CAF50; /* Green for emphasis */
+    }
+
+/* Resource list section */
+.resource-list {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Search bar styling */
+.search-bar {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+    /* Focus effect on the search bar */
+    .search-bar:focus {
+        border-color: #4CAF50;
+        outline: none;
+    }
+
+/* Donation table styling */
+.donation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+    /* Table headers styling */
+    .donation-table thead {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .donation-table th, .donation-table td {
+        padding: 12px 20px;
+        text-align: left;
+        font-size: 16px;
+    }
+
+    .donation-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Table row hover effect */
+    .donation-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+/* Donation card hover effect */
+.stat-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation for dashboard sections */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.dashboard {
+    animation: fadeIn 1s ease-in-out;
+}

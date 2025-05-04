@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\admindashboard.css" />
+    <None Include="wwwroot\css\forgetpassword.css" />
+    <None Include="wwwroot\css\payment.css" />
+    <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\css\style1.css" />
+    <None Include="wwwroot\css\style2.css" />
+    <None Include="wwwroot\css\style3.css" />
+    <None Include="wwwroot\css\userdashboard.css" />
+    <None Include="wwwroot\img\charity-international-organization-volunteers-fund-tiny-people-donate-coins-with-hearts_1135642-913.avif" />
+    <None Include="wwwroot\img\hero.jpeg" />
+    <None Include="wwwroot\img\hero1.jpg" />
+    <None Include="wwwroot\img\hero2.jpg" />
+    <None Include="wwwroot\img\hero4.jpeg" />
+    <None Include="wwwroot\img\hero5.jpg" />
+    <None Include="wwwroot\img\hero6.jpg" />
+    <None Include="wwwroot\img\logo.png" />
+    <None Include="wwwroot\js\payment.js" />
+    <None Include="wwwroot\js\script.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.12.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="Stripe.net" Version="48.1.0" />
+    <PackageReference Include="UAParser" Version="3.1.47" />
+  </ItemGroup>
+
+</Project>

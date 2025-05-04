@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_masterLayout.cshtml";
+}
+
+<main class="dashboard">
+    <section class="stats">
+        <div class="stat-card">
+            <h3>Total Donations</h3>
+            <p>$<span id="total-money">0</span></p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Resources</h3>
+            <p><span id="total-resources">0</span></p>
+        </div>
+    </section>
+
+    <section class="resource-list">
+        <h3>Recent Donations</h3>
+        <input type="text" id="search" class="search-bar" placeholder="Search donations...">
+        <table class="donation-table">
+            <thead>
+                <tr>
+                    <th>Donor Name</th>
+                    <th>Resource</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="donation-list">
+                <!-- Data will be inserted dynamically -->
+            </tbody>
+        </table>
+    </section>
+</main>

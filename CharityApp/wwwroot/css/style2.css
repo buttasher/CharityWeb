@@ -1,0 +1,152 @@
+/* Login Page CSS */
+body {
+  font-family: Arial, sans-serif;
+  /* width: 90%;
+  max-width: 25rem; */
+
+}
+/* From Uiverse.io by akshat-patel28 */
+.form-container {
+  width: 90%;
+  max-width: 400px;
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
+  margin-bottom: 25px;
+  color: #d9731d;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input {
+  border-radius: 10px;
+  border: 1px solid #c0c0c0;
+  padding: 12px 16px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.3s;
+}
+
+.input:focus {
+  border-color: teal;
+}
+
+.page-link {
+  text-align: end;
+  font-size: 13px;
+  color: #747474;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.page-link:hover {
+  color: #000;
+}
+
+.form-btn {
+  padding: 10px;
+  font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
+  border-radius: 20px;
+  border: none;
+  background: teal;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.form-btn:active {
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+.sign-up-label {
+  font-size: 15px;
+  margin: 25px 0;
+  color: #747474;
+  text-align: center;
+}
+
+.sign-up-link {
+  padding-left: 7px;
+  color: teal;
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.apple-login-button,
+.google-login-button {
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+}
+
+.apple-login-button {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+}
+
+.google-login-button {
+  font-size: 14px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #747474;
+}
+
+.apple-icon,
+.google-icon {
+  font-size: 18px;
+  margin-bottom: 1px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .form-container {
+    margin: 8% auto;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .input,
+  .form-btn,
+  .apple-login-button,
+  .google-login-button {
+    font-size: 14px;
+  }
+}

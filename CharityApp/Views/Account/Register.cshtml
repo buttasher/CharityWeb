@@ -1,0 +1,32 @@
+﻿@model CharityApp.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_masterLayout.cshtml";
+}
+
+
+
+<form asp-action="Register" method="post" class="form">
+    <label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "input", placeholder = "Full name" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </label>
+
+    <label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "input", placeholder = "Email" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </label>
+
+    <label>
+        @Html.PasswordFor(m => m.Password, new { @class = "input", placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </label>
+
+    <label>
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input", placeholder = "Confirm password" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </label>
+
+    <button class="submit">Register</button>
+</form>
+

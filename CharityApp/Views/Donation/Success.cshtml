@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Payment Successful</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Thank you!',
+            text: 'Your donation was successful.',
+            confirmButtonText: 'Continue'
+        }).then(() => {
+            window.location.href = '/Home/User'; // change this to your actual login route
+        });
+    </script>
+</body>
+</html>

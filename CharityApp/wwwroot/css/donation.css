@@ -1,0 +1,67 @@
+﻿/* General page layout */
+.donation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+/* Donation title styling */
+.donation-title {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Donation form styling */
+.donation-form {
+    background-color: #ffffff;
+    padding: 40px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Input field styling */
+.amount-input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+    /* Focus effect on the input field */
+    .amount-input:focus {
+        border-color: #4CAF50;
+        outline: none;
+    }
+
+
+/* Smooth transition for the form elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.donation-container {
+    animation: fadeIn 1s ease-in-out;
+}

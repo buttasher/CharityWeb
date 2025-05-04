@@ -1,0 +1,152 @@
+/* === Register Page Styles === */
+body {
+  font-family: Arial, sans-serif;
+  /* width: 90%;
+  max-width: 25rem; */
+
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 90%;
+  max-width: 400px;
+  margin: 7% auto;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 28px;
+  color: #d9731d;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.message {
+  text-align: center;
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.form label {
+  position: relative;
+  width: 100%;
+}
+
+.form .input {
+  width: 100%;
+  padding: 20px 14px 12px;
+  border: 1px solid rgba(105, 105, 105, 0.4);
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form label span {
+  position: absolute;
+  left: 16px;        /* Adds horizontal padding */
+  top: 14px;
+  font-size: 0.9em;
+  color: #808080;
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+.input:focus + span,
+.input:valid + span {
+  top: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: teal;
+}
+
+.submit {
+  background-color: #d9731d;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  font-weight: 600;
+}
+
+.submit:hover {
+  background-color: teal;
+  transform: translateY(-1px);
+}
+
+.or-text {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.google {
+  background-color: #db4437;
+}
+
+.google:hover {
+  background-color: #c1351d;
+}
+
+.facebook {
+  background-color: #4267B2;
+}
+
+.facebook:hover {
+  background-color: #365899;
+}
+
+/* === Responsive === */
+@media (max-width: 500px) {
+  .form {
+    padding: 20px;
+    margin: 10% auto;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .flex {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
