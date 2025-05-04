@@ -3,17 +3,36 @@
     Layout = "~/Views/Shared/_masterLayout.cshtml";
 }
 
+<!-- Add a container to center the form and add some margin and padding -->
 <div class="donation-container">
     <h2 class="donation-title">Make a Donation</h2>
 
     <form id="donation-form" class="donation-form">
-        <input type="text" id="userName" class="form-control" placeholder="Your Name" value="@ViewBag.UserName" readonly />
+        <div class="form-group">
+            <input type="text" id="userName" class="form-control" placeholder="Your Name" value="@ViewBag.UserName" readonly />
+        </div>
 
-        <input type="email" id="email" class="form-control" placeholder="Email" required />
+        <div class="form-group">
+            <input type="email" id="email" class="form-control" placeholder="Email" required />
+        </div>
 
-        <input type="text" id="country" class="form-control" placeholder="Country" />
+        <div class="form-group">
+            <input type="text" id="country" class="form-control" placeholder="Country" />
+        </div>
 
-        <input type="number" id="amount" class="form-control" placeholder="Amount (USD)" required min="1" />
+        <div class="form-group">
+            <input type="number" id="amount" class="form-control" placeholder="Amount (USD)" required min="1" />
+        </div>
+
+        <!-- Custom styled checkbox -->
+        <div class="form-group checkbox-wrapper-41">
+            <label class="checkbox-container">
+                First time donor 
+                <input type="checkbox" id="firstTimeDonor" />
+                <span class="checkbox-checkmark"></span>
+            </label>
+        </div>
+
 
         <button type="submit" class="donation-btn">Donate Now</button>
     </form>
@@ -26,20 +45,16 @@
     document.getElementById('donation-form').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const userName = document.getElementById('userName')?.value || "Guest";
-        const email = document.getElementById('email')?.value;
-        const country = document.getElementById('country')?.value || "Unknown";
-        const amount = parseFloat(document.getElementById('amount')?.value || "0");
-
-        if (!email || !amount || amount < 1) {
-            alert("Please fill in all required fields correctly.");
-            return;
-        }
+        const amount = parseInt(document.getElementById('amount').value);
+        const userName = document.getElementById('userName').value;
+        const email = document.getElementById('email').value;
+        const country = document.getElementById('country').value;
+        const isFirstTimeDonor = document.getElementById('firstTimeDonor').checked;
 
         fetch('/Donation/CreateCheckoutSession', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userName, email, country, amount })
+            body: JSON.stringify({ amount, userName, email, country, isFirstTimeDonor })
         })
             .then(res => res.json())
             .then(data => {

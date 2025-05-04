@@ -35,11 +35,11 @@ namespace CharityApp.Controllers
                 var donation = new Donation
                 {
                     UserName = request.UserName ?? "Guest",
-                    Email = request.Email ?? "noemail@example.com",
+                    Email = request.Email ?? "unknown@example.com",
                     Amount = request.Amount,
                     DonationTime = DateTime.Now,
-                    Country = "Unknown", // You can replace with actual IP to country logic
-                    IsFirstTimeDonor = true, // Could check from DB if you track emails
+                    Country = request.Country ?? "Unknown",
+                    IsFirstTimeDonor = request.IsFirstTimeDonor,
                     Device = HttpContext.Request.Headers["User-Agent"].ToString(),
                     FailedAttempts = 0,
                     VpnUsed = false,
@@ -53,21 +53,21 @@ namespace CharityApp.Controllers
                 {
                     PaymentMethodTypes = new List<string> { "card" },
                     LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
                     {
-                        new SessionLineItemOptions
+                        UnitAmount = request.Amount * 100,
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
-                            PriceData = new SessionLineItemPriceDataOptions
-                            {
-                                UnitAmount = (long)(request.Amount * 100),
-                                Currency = "usd",
-                                ProductData = new SessionLineItemPriceDataProductDataOptions
-                                {
-                                    Name = "Charity Donation"
-                                }
-                            },
-                            Quantity = 1
+                            Name = "Charity Donation"
                         }
                     },
+                    Quantity = 1
+                }
+            },
                     Mode = "payment",
                     SuccessUrl = Url.Action("Success", "Donation", null, Request.Scheme),
                     CancelUrl = Url.Action("Cancel", "Donation", null, Request.Scheme),

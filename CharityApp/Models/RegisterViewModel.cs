@@ -10,5 +10,6 @@ namespace CharityApp.Models
 
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
+
     }
 }

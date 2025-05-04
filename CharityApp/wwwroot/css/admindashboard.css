@@ -12,7 +12,8 @@
 /* Stats section (Total Donations, Total Resources) */
 .stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items : center
     margin-bottom: 40px;
     width: 100%;
     max-width: 900px;

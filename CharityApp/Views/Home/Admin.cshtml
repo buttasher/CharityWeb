@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<CharityApp.Models.Donation>
+
+@{
     ViewData["Title"] = "Admin";
     Layout = "~/Views/Shared/_masterLayout.cshtml";
 }
@@ -7,11 +9,7 @@
     <section class="stats">
         <div class="stat-card">
             <h3>Total Donations</h3>
-            <p>$<span id="total-money">0</span></p>
-        </div>
-        <div class="stat-card">
-            <h3>Total Resources</h3>
-            <p><span id="total-resources">0</span></p>
+            <p>Rs <span id="total-money" data-count="@ViewBag.totalAmount">@ViewBag.totalAmount</span></p>
         </div>
     </section>
 
@@ -21,15 +19,45 @@
         <table class="donation-table">
             <thead>
                 <tr>
-                    <th>Donor Name</th>
-                    <th>Resource</th>
-                    <th>Amount</th>
-                    <th>Date</th>
+                    <th>
+                        Donor Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+
                 </tr>
             </thead>
-            <tbody id="donation-list">
-                <!-- Data will be inserted dynamically -->
-            </tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonationTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+
+                </tr>
+            }
         </table>
     </section>
 </main>

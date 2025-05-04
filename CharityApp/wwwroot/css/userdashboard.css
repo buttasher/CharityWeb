@@ -93,3 +93,68 @@ h2 {
 .page {
     animation: fadeIn 1s ease-in-out;
 }
+
+/* Smooth professional form styling */
+.checkbox-wrapper-41 .checkbox-container {
+    position: relative;
+    display: flex;
+    align-items: center; /* Aligns the checkbox and label text vertically */
+    font-size: 16px;
+    color: #555;
+    user-select: none;
+}
+
+.checkbox-wrapper-41 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    left: 0;
+}
+
+.checkbox-checkmark {
+    width: 50px;
+    height: 25px;
+    background: linear-gradient(90deg, #f19af3, #f099b5);
+    border-radius: 50px;
+    transition: 0.3s;
+    position: relative;
+    box-sizing: border-box;
+}
+
+    .checkbox-checkmark::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background-color: #fff;
+        border-radius: 50%;
+        left: 4px;
+        top: 4px;
+        transition: 0.2s;
+    }
+
+/* Checked state */
+input:checked + .checkbox-checkmark {
+    background: #9FD6AE;
+}
+
+    input:checked + .checkbox-checkmark::after {
+        left: calc(100% - 22px); /* Move to the right side */
+    }
+
+/* For hover effect */
+.checkbox-wrapper-41 input:hover + .checkbox-checkmark {
+    background: #c9cbcd;
+}
+
+/* Adjust space between label and checkbox */
+.checkbox-wrapper-41 .checkbox-container {
+    display: flex;
+    justify-content: space-between; /* Ensures there is space between the text and checkbox */
+    align-items: center;
+    width: 100%;
+}
+
+.checkbox-wrapper-41 label {
+    margin-right: 10px; /* Adds space between label and checkbox */
+}
