@@ -24,6 +24,9 @@ builder.Services.AddSession();
 
 builder.Services.AddSingleton<EmailService>();
 
+// Register IHttpContextAccessor for use in views
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -8,7 +8,8 @@
     <!-- Background Image Overlay -->
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
                 background: url('@Url.Content("~/img/hero6.jpg")') center center/cover no-repeat;
-                opacity: 0.3; z-index: 1;"></div>
+                opacity: 0.3; z-index: 1;">
+     </div>
 
     <!-- Content Layer -->
     <div class="hero-content" style="position: relative; z-index: 2;">
@@ -31,7 +32,7 @@
             <p class="description">
                 Donation is the act of giving with a generous heart, creating a ripple of positive change in the lives of others. It’s more than just a contribution—it’s a statement of compassion and a step towards building a better world. Every donation, big or small, holds the power to provide hope, restore dignity, and empower communities in need. Together, through giving, we can make a meaningful difference and spread kindness where it’s needed most.
             </p>
-            <button class="donate-btn">Be the part of this great cause!</button>
+            <a asp-controller="Account" asp-action="Register" class="donate-btn" style="text-decoration:none">Be the part of this great cause!</a>
 
         </div>
     </div>

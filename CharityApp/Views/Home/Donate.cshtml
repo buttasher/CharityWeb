@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Donate";
+    Layout = "~/Views/Shared/_masterLayout.cshtml";
+}
+
+<section class="hero" id="hero" loading="lazy" style="position: relative; overflow: hidden;">
+    <!-- Background Image Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                background: url('@Url.Content("~/img/hero6.jpg")') center center/cover no-repeat;
+                opacity: 0.3; z-index: 1;">
+    </div>
+
+    <!-- Content Layer -->
+    <div class="hero-content" style="position: relative; z-index: 2;">
+        <h1 class="hero-title">Welcome to AidBloom</h1>
+        <p class="hero-subtitle">Join hands with us to create a better world through the power of donation</p>
+        <a asp-controller="Account" asp-action="Register" class="donate-btn">Donate Now</a>
+    </div>
+</section>
+
+<section class="donation-options">
+    <div class="containor">
+        <h2 class="section-title">Different Ways You Can Help</h2>
+        <div class="donation-cards">
+            <!-- Card 1: Monthly Donation -->
+            <div class="donation-card">
+                <div class="donation-icon">
+                    <i class="fas fa-undo-alt"></i> <!-- Monthly Donation Icon -->
+                </div>
+                <h3>Monthly Donation</h3>
+                <p>
+                    Make a difference every month by setting up a recurring donation. Your steady support will help us continue
+                    our mission.
+                </p>
+                <a class="donate-option-btn" style="text-decoration:none" asp-controller="Account" asp-action="Register">Donate Monthly</a>
+            </div>
+            <!-- Card 2: One-Time Donation -->
+            <div class="donation-card">
+                <div class="donation-icon">
+                    <i class="fas fa-gift"></i> <!-- One-Time Donation Icon -->
+                </div>
+                <h3>One-Time Donation</h3>
+                <p>
+                    Give what you can today. Every contribution counts, and your generosity will go towards a meaningful cause.
+                </p>
+                <a class="donate-option-btn" style="text-decoration:none" asp-controller="Account" asp-action="Register">>Donate Once</a>
+            </div>
+            <!-- Card 3: Donation in Kind -->
+            <div class="donation-card">
+                <div class="donation-icon">
+                    <i class="fas fa-box-open"></i> <!-- Donation in Kind Icon -->
+                </div>
+                <h3>Donation in Kind</h3>
+                <p>
+                    In addition to financial contributions, we welcome physical donations. Clothes, food, and essentials are
+                    always in need.
+                </p>
+                <a class="donate-option-btn" style="text-decoration:none" asp-controller="Account" asp-action="Register">>Donate Items</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="containor">
+        <div class="contact-info">
+            <h2 class="contact-title">Want to Donate? Contact Us!</h2>
+            <p class="contact-description">
+                If you're interested in making a donation, feel free to reach out to us via email. We’d love to hear from you
+                and discuss how you can contribute to our cause.
+            </p>
+            <a href="mailto:donate@charityapp.com" class="contact-email">donate@charityapp.com</a>
+        </div>
+    </div>
+</section>
