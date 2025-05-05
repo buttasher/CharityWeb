@@ -13,12 +13,14 @@ namespace CharityApp.Controllers
         private readonly CharityDbContext _context;
         private readonly StripeSettings _stripeSettings;
         private readonly HttpClient _httpClient;
+        private readonly FraudPredictionService _fraudService;
 
-        public DonationController(IOptions<StripeSettings> stripeOptions, CharityDbContext context)
+        public DonationController(IOptions<StripeSettings> stripeOptions, CharityDbContext context, FraudPredictionService fraudService)
         {
             _stripeSettings = stripeOptions.Value;
             _context = context;
             _httpClient = new HttpClient();
+            _fraudService = fraudService;
         }
 
         [HttpGet]
@@ -60,6 +62,17 @@ namespace CharityApp.Controllers
                 _context.Donations.Add(donation);
                 _context.SaveChanges();
 
+                // Call AI API
+                var fraudResult = await _fraudService.PredictFraudAsync(donation);
+
+                if (fraudResult.fraud)
+                {
+                    donation.IsFraud = true;
+                    donation.FraudFlags = string.Join("; ", fraudResult.flags);
+                    donation.FraudConfidence = fraudResult.confidence;
+                    donation.FraudMethod = fraudResult.method;
+                    _context.SaveChanges();
+                }
                 var options = new SessionCreateOptions
                 {
                     PaymentMethodTypes = new List<string> { "card" },

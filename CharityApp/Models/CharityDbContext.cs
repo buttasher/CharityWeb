@@ -23,12 +23,13 @@ public partial class CharityDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Donation>(entity =>
         {
             entity.HasKey(e => e.DonationId).HasName("PK__Donation__C5082EFB7F8E8765");
+
+            entity.Property(e => e.IsFraud).HasDefaultValue(false);
         });
 
         modelBuilder.Entity<PasswordReset>(entity =>

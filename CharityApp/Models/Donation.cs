@@ -37,4 +37,14 @@ public partial class Donation
     public int? FailedAttempts { get; set; }
 
     public bool? VpnUsed { get; set; }
+
+    public bool? IsFraud { get; set; }
+
+    [StringLength(500)]
+    public string? FraudFlags { get; set; }
+
+    [StringLength(50)]
+    public string? FraudMethod { get; set; }
+
+    public double? FraudConfidence { get; set; }
 }
