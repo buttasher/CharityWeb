@@ -3,7 +3,8 @@ using CharityApp.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Stripe.Checkout;
-using System;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace CharityApp.Controllers
 {
@@ -11,11 +12,13 @@ namespace CharityApp.Controllers
     {
         private readonly CharityDbContext _context;
         private readonly StripeSettings _stripeSettings;
+        private readonly HttpClient _httpClient;
 
         public DonationController(IOptions<StripeSettings> stripeOptions, CharityDbContext context)
         {
             _stripeSettings = stripeOptions.Value;
             _context = context;
+            _httpClient = new HttpClient();
         }
 
         [HttpGet]
@@ -28,8 +31,16 @@ namespace CharityApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCheckoutSession([FromBody] DonationRequest request)
+        public async Task<IActionResult> CreateCheckoutSession([FromBody] DonationRequest request)
         {
+            string userIp = HttpContext.Connection.RemoteIpAddress?.ToString();
+
+            int recentFailedAttempts = _context.Donations
+                .Where(d => d.IpAddress == userIp && d.Amount == 0)
+                .Count();
+
+            bool vpnUsed = await IsUsingVpn(userIp);
+
             try
             {
                 var donation = new Donation
@@ -41,9 +52,9 @@ namespace CharityApp.Controllers
                     Country = request.Country ?? "Unknown",
                     IsFirstTimeDonor = request.IsFirstTimeDonor,
                     Device = HttpContext.Request.Headers["User-Agent"].ToString(),
-                    FailedAttempts = 0,
-                    VpnUsed = false,
-                    IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString()
+                    FailedAttempts = recentFailedAttempts,
+                    VpnUsed = vpnUsed,
+                    IpAddress = userIp
                 };
 
                 _context.Donations.Add(donation);
@@ -53,21 +64,21 @@ namespace CharityApp.Controllers
                 {
                     PaymentMethodTypes = new List<string> { "card" },
                     LineItems = new List<SessionLineItemOptions>
-            {
-                new SessionLineItemOptions
-                {
-                    PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount = request.Amount * 100,
-                        Currency = "usd",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        new SessionLineItemOptions
                         {
-                            Name = "Charity Donation"
+                            PriceData = new SessionLineItemPriceDataOptions
+                            {
+                                UnitAmount = request.Amount * 100,
+                                Currency = "usd",
+                                ProductData = new SessionLineItemPriceDataProductDataOptions
+                                {
+                                    Name = "Charity Donation"
+                                }
+                            },
+                            Quantity = 1
                         }
                     },
-                    Quantity = 1
-                }
-            },
                     Mode = "payment",
                     SuccessUrl = Url.Action("Success", "Donation", null, Request.Scheme),
                     CancelUrl = Url.Action("Cancel", "Donation", null, Request.Scheme),
@@ -92,6 +103,28 @@ namespace CharityApp.Controllers
         public IActionResult Cancel()
         {
             return View("Index");
+        }
+
+        // 🛡 VPN Detection Method using ipapi.co
+        private async Task<bool> IsUsingVpn(string ip)
+        {
+            try
+            {
+                var response = await _httpClient.GetStringAsync($"https://ipapi.co/{ip}/json/");
+                var json = JsonDocument.Parse(response);
+                if (json.RootElement.TryGetProperty("privacy", out JsonElement privacy))
+                {
+                    if (privacy.TryGetProperty("vpn", out JsonElement vpn))
+                    {
+                        return vpn.GetBoolean();
+                    }
+                }
+            }
+            catch
+            {
+                // Optional: log failure or fallback
+            }
+            return false;
         }
     }
 }
